@@ -1,5 +1,5 @@
 {
-  "name": "Zleap-help-center",
+  "name": "zleap-help-center",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -27,5 +27,14 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
-  }
+  },
+  "description": "This is a Next.js application generated with [Create Fumadocs](https://github.com/fuma-nama/fumadocs).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
 }
