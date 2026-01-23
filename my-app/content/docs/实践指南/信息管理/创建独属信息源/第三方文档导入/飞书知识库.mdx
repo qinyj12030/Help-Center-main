@@ -1,0 +1,149 @@
+---
+title: 飞书知识库
+description: 将飞书知识库导入智跃Zleap信息管理系统
+---
+
+import { FeedbackButton } from '@/components/FeedbackButton';
+
+## 操作步骤
+
+### 一、选择飞书文档
+
+#### 1. 点击导入文档，选择飞书文档
+
+<img src="/images/飞书知识库/1.png" alt="选择飞书文档" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 2. 配置飞书文档参数
+
+从飞书文档中导入时，需要根据配置飞书文档的 App ID、App Secret、User Access Token，如下图所示。
+
+<img src="/images/飞书知识库/2.png" alt="配置参数" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 二、获取飞书文档参数
+
+#### 3. 进入飞书开放平台创建企业自建应用
+
+<img src="/images/飞书知识库/3.png" alt="创建企业自建应用" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 4. 点击创建
+
+<img src="/images/飞书知识库/4.png" alt="点击创建" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 5. 创建版本并发布应用
+
+点击创建版本，填写应用版本号、更新说明，点击保存，确认发布应用
+
+<img src="/images/飞书知识库/5.png" alt="创建版本" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 6. 配置应用权限
+
+为应用配置相应的权限：点击权限管理-批量导入/导出权限
+
+<img src="/images/飞书知识库/6.png" alt="权限管理" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 7. 导入权限配置
+
+复制如下权限，点击下一步，确认新增权限
+
+```json
+{
+  "scopes": {
+    "tenant": [
+      "docs:doc:readonly",
+      "docs:document.content:read",
+      "docx:document:readonly",
+      "drive:drive.metadata:readonly",
+      "drive:file:download",
+      "sheets:spreadsheet.meta:read",
+      "space:document:retrieve",
+      "wiki:wiki:readonly"
+    ],
+    "user": [
+      "docx:document:readonly",
+      "drive:export:readonly",
+      "sheets:spreadsheet",
+      "space:document:retrieve",
+      "wiki:space:retrieve",
+      "wiki:wiki:readonly"
+    ]
+  }
+}
+```
+
+<img src="/images/飞书知识库/7.png" alt="导入权限" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 8. 创建新版本并发布
+
+创建新的版本（此时权限已开通），保存并发布
+
+<img src="/images/飞书知识库/8.png" alt="发布新版本" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 9. 获取 App ID 和 App Secret
+
+发布应用后，在 "凭证与基础信息" 页面可以找到 App ID 和 App Secret。
+
+<img src="/images/飞书知识库/9.png" alt="获取凭证" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 10. 获取 User Access Token
+
+之后进入 https://open.feishu.cn/api-explorer/ ，选择刚刚创建的应用，然后点击获取 Token。
+
+**注意：** Token 必须是 "u-" 开头的字符串。
+
+<img src="/images/飞书知识库/10.png" alt="获取Token" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 11. 确认添加并授权
+
+确认添加并授权后可获取Token
+
+<img src="/images/飞书知识库/11.png" alt="授权获取Token" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 三、输入配置参数
+
+#### 12. 输入配置信息
+
+输入正确的App ID 、 App Secret、Token后，可导入飞书文档：
+
+<img src="/images/飞书知识库/12.png" alt="输入配置" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 13. 选择要导入的文档
+
+<img src="/images/飞书知识库/13.png" alt="选择文档" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+#### 14. 导入成功
+
+<img src="/images/飞书知识库/14.png" alt="导入成功" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+## 反馈与建议：给帮助中心提需求
+
+我们非常重视您的意见，您的每一个建议都能帮助我们把产品做得更好！
+
+<FeedbackButton href="https://kcnfstknddo1.feishu.cn/share/base/form/shrcnPCPMzQMlLQbNmedv6YRZff" />

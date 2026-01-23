@@ -1,6 +1,130 @@
 ---
 title: 企微机器人
+---
+
+import { FeedbackButton } from '@/components/FeedbackButton';
+
+## 一、前置功能添加
+
+### 1. 进入企微管理后台
+
+[企微管理后台入口](https://work.weixin.qq.com/)（点击直接跳转），电脑网页端访问（需要企微管理员权限账号扫码登录），点击【管理工具】，选择【会话内容存档】。
+
+<img src="/images/企微机器人/1.png" alt="进入企微管理后台" style={{ maxWidth: '100%', height: 'auto' }} />
 
 ---
 
-# 
+### 2. 下载并上传确认函
+
+【下载确认函】——填写好后【上传确认函】——点击购买（或者免费体验30天）。
+
+<img src="/images/企微机器人/2.png" alt="下载并上传确认函" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 3. 配置会话内容存档
+
+配置路径：审核通过后，进入【管理后台】>【会话会话内容存档】> 进行配置。
+
+<img src="/images/企微机器人/3.png" alt="配置会话内容存档" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 4. 配置可信IP
+
+配置可信ip，复制ip地址
+
+<img src="/images/企微机器人/4.png" alt="配置可信IP" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 5. 创建密钥文件
+
+根据官方提供的API文档，创建Private_key.pem和public_key.pem
+
+**注意：** 配置消息加密的公钥（public_key.pem），密钥（Private_key.pem）也要保存。
+
+企微官方API文档命令如下（可直接复制进行自定义配置）：
+
+<img src="/images/企微机器人/5.png" alt="生成密钥文件" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<center>生成教程参考图片</center>
+
+```bash
+# step 1：生成2048bit的私钥
+$ openssl genrsa -out private_key.pem 2048
+
+# step 2: 从私钥提取公钥
+$ openssl rsa -in private_key.pem -pubout -out public_key.pem
+
+# step 3: 为了调用接口设置，需要再转义一下换行符
+$ awk '{printf "%s\\n", $0}' public_key.pem
+```
+
+最终得到的"-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----\n"即可传入接口public_key字段调用
+
+---
+
+### 6. 上传公钥
+
+上传【public_key.pem】（消息加密公钥）
+
+### 7. 添加存档内容
+
+添加存档内容-根据自己或企业需要开启会话存档范围。
+
+在【会话内容存档】-【开启范围】添加成员，即可以获取该成员的会话内容
+
+**注意：** 这个成员必须是自己或自己的员工。
+
+<img src="/images/企微机器人/6.png" alt="添加存档内容1" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/企微机器人/7.png" alt="添加存档内容2" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+## 二、前置工作已完成，配置相关信息
+
+<img src="/images/企微机器人/8.png" alt="配置相关信息" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 1. 企业ID
+
+企业ID，依旧在企微管理后台入口页面。
+
+**查询路径：** 企业微信 → 我的企业 → 企业ID
+
+<img src="/images/企微机器人/9.png" alt="企业ID" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 2. Secret配置
+
+**查询路径1（发送secret至企业微信）：**
+
+企业微信 → 企微会话存档配置 → Secret【查看】→ 点击【发送】→ 等待系统发送到企业微信
+
+<img src="/images/企微机器人/10.png" alt="发送Secret1" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/企微机器人/11.png" alt="发送Secret2" style={{ maxWidth: '100%', height: 'auto' }} />
+
+**查询路径2（企业微信查看）：**
+
+企业微信团队查看secret信息并复制
+
+<img src="/images/企微机器人/12.png" alt="查看Secret" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 3. 密钥文件
+
+密钥文件，参考本文档「消息加密公钥配置」,上传【private_key.pem】文件至Zleap配置表单
+
+---
+
+## 反馈与建议:给帮助中心提需求
+
+我们非常重视您的意见,您的每一个建议都能帮助我们把产品做得更好!
+
+<FeedbackButton href="https://kcnfstknddo1.feishu.cn/share/base/form/shrcnPCPMzQMlLQbNmedv6YRZff" />

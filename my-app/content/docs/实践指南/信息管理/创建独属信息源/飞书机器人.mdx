@@ -1,6 +1,173 @@
 ---
 title: 飞书机器人
+description: 配置飞书机器人接入智跃Zleap信息管理系统
+---
+
+import { FeedbackButton } from '@/components/FeedbackButton';
+
+## 一、飞书机器人设置
+
+### 1. 创建企业自建应用
+
+打开飞书开放平台：https://open.feishu.cn/app，电脑网页端访问，点击【创建企业自建应用】。
+
+<img src="/images/飞书机器人/1.png" alt="创建企业自建应用" style={{ maxWidth: '100%', height: 'auto' }} />
 
 ---
 
-# 
+### 2. 填写应用信息
+
+根据您公司文化需要填写信息，完成相关信息填写设置后，点击【创建】。
+
+<img src="/images/飞书机器人/2.png" alt="填写应用信息" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 3. 添加机器人能力
+
+点击【添加应用能力】，【添加】机器人。
+
+<img src="/images/飞书机器人/3.png" alt="添加机器人能力" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 4. 导入权限配置
+
+添加完成后，点击【权限管理】，点击【批量导入/导出权限】。
+
+<img src="/images/飞书机器人/4.png" alt="导入权限配置" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 5. 批量导入JSON权限
+
+在导入框页面里输入以下我们提供给您的批量导入JSON，点击【下一步，确认新增权限】
+
+```json
+{
+  "scopes": {
+    "tenant": [
+      "contact:contact.base:readonly",
+      "contact:user.base:readonly",
+      "drive:drive",
+      "drive:drive:readonly",
+      "drive:file",
+      "drive:file:download",
+      "drive:file:readonly",
+      "im:chat.members:read",
+      "im:chat:read",
+      "im:chat:readonly",
+      "im:message",
+      "im:message.group_msg",
+      "im:message:readonly"
+    ],
+    "user": []
+  }
+}
+```
+
+<img src="/images/飞书机器人/5.png" alt="批量导入JSON权限" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 6. 申请开通权限
+
+粘贴导入无误后会出现以下页面，点击【申请开通】。如失败检查复制粘贴的JSON代码。
+
+<img src="/images/飞书机器人/6.png" alt="申请开通权限" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 7. 配置权限范围
+
+开通会自动跳转出此页面，点击【配置】，将范围改成【全部成员】，点击【保存】。
+
+<img src="/images/飞书机器人/7.png" alt="配置权限范围1" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/飞书机器人/8.png" alt="配置权限范围2" style={{ maxWidth: '100%', height: 'auto' }} />
+
+**提示：** 如果误操作关闭了自动跳转的页面，点击【权限管理】，图示右方的【配置】，即可设置。
+
+<img src="/images/飞书机器人/9.png" alt="权限管理配置" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 8. 创建版本
+
+设置保存完成后，点击【版本管理与发布】，点击【创建版本】。
+
+<img src="/images/飞书机器人/10.png" alt="创建版本" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 9. 完成版本设置
+
+随后根据页面提示，填写完成相关必填信息，点击【保存】。
+
+<img src="/images/飞书机器人/11.png" alt="完成版本设置1" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/飞书机器人/12.png" alt="完成版本设置2" style={{ maxWidth: '100%', height: 'auto' }} />
+
+根据公司管理需要，设置能够添加此机器人的权限人员，全部或者部分成员
+
+<img src="/images/飞书机器人/13.png" alt="设置权限人员" style={{ maxWidth: '100%', height: 'auto' }} />
+
+随后保存，等待审核
+
+<img src="/images/飞书机器人/14.png" alt="等待审核" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 10. 审核发布
+
+如使用企业飞书管理员账号进行设置，直接免审自行通过即可进行下一步。如不是，找到您的企业飞书管理员，让其通过机器人应用发布。
+
+**企业飞书管理员操作说明：**
+
+管理员账户登录https://open.feishu.cn/app，如图所示点击右上角栏目扩展中的【管理后台】。
+
+<img src="/images/飞书机器人/15.png" alt="管理后台" style={{ maxWidth: '100%', height: 'auto' }} />
+
+进入后右侧会出现待审核的应用，点击【前往审核】，根据图示进行审核通过即可
+
+<img src="/images/飞书机器人/16.png" alt="前往审核" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/飞书机器人/17.jpg" alt="审核通过1" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/飞书机器人/18.png" alt="审核通过2" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 11. 添加机器人到群聊
+
+在需要的飞书群【设置】里中添加刚刚发布的飞书机器人应用，注意：需要群成员权限添加。
+
+<img src="/images/飞书机器人/19.png" alt="添加机器人到群聊1" style={{ maxWidth: '100%', height: 'auto' }} />
+
+<img src="/images/飞书机器人/20.png" alt="添加机器人到群聊2" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+## 二、信息源添加
+
+### 1. 获取应用凭证
+
+回到飞书开放平台，找到添加的飞书机器人应用点击【凭证与基础信息】，复制【APP ID】和【APP Secret】。
+
+<img src="/images/飞书机器人/21.png" alt="获取应用凭证" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+### 2. 完成信息源配置
+
+回到智跃Zleap，粘贴刚刚复制的相关信息即可完成信息源添加。
+
+<img src="/images/飞书机器人/22.png" alt="完成信息源配置" style={{ maxWidth: '100%', height: 'auto' }} />
+
+---
+
+## 反馈与建议：给帮助中心提需求
+
+我们非常重视您的意见，您的每一个建议都能帮助我们把产品做得更好！
+
+<FeedbackButton href="https://kcnfstknddo1.feishu.cn/share/base/form/shrcnPCPMzQMlLQbNmedv6YRZff" />
